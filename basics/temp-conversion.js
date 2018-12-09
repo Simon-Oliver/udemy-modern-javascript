@@ -1,4 +1,4 @@
-const fahrenheit = 32;
+const fahrenheit = 50;
 const celcius = 10;
 
 function fToC(f) {
