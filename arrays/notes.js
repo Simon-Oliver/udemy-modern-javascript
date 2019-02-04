@@ -1,15 +1,22 @@
-const notes = ['Do washing', 'Cook Dinner', 'Coding'];
+const notes = [
+  {
+    title: 'Note One',
+    body: 'This is the first note.'
+  },
+  {
+    title: 'Note Two',
+    body: 'This is the middle note.'
+  },
+  {
+    title: 'Last Note',
+    body: 'this is now the last note of the array'
+  }
+];
 
-// notes.push('Pushed Note');
-// notes.push('Pop Note')
-// console.log(notes);
-// notes.pop();
-
-// notes.splice(1,1, 'Antoher Item')
-
-notes[2] = 6
+function findNote(notes, noteTitle) {
+  const index = notes.findIndex(e => e.title === noteTitle);
+  return index >= 0 ? notes[index] : undefined;
+}
 
 console.log(notes.length);
-console.log(notes);
-
-
+console.log(findNote(notes, 'Last Note'));
