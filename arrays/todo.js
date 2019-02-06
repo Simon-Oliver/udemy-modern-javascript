@@ -15,6 +15,6 @@ toDo.splice(2, 1);
 toDo.push('New last Todo');
 toDo.shift();
 
-toDo.forEach((e, i) => console.log(`${i + 1}. ${e}`));
+toDo.forEach((e, i) => console.log(`${i +1}. ${e}`));
 
 // todoSum(toDo);

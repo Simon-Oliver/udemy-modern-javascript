@@ -8,6 +8,10 @@ const notes = [
     body: 'This is the middle note.'
   },
   {
+    title: 'Second Last Note',
+    body: 'this is now the second last note of the array'
+  },
+  {
     title: 'Last Note',
     body: 'this is now the last note of the array'
   }
