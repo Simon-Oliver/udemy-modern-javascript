@@ -16,6 +16,14 @@ const toDo = [
     complete: false
   }
 ];
+const prettyLoger = (title = 'No Title', returnValue) => {
+  console.log(
+    title,
+    '\n----------------------------------------------------\n',
+    returnValue,
+    '\n----------------------------------------------------\n'
+  );
+};
 
 const findObject = (object, title = '') => {
   const index = object.findIndex((item, i) => {
@@ -25,7 +33,7 @@ const findObject = (object, title = '') => {
   return object[index] ? object[index] : 'Note not found';
 };
 
-console.log(findObject(toDo, 'todo 4'));
+prettyLoger('findTodo', findObject(toDo, 'todo 4'));
 
 const removeTodo = (object, title) => {
   const index = object.findIndex((item, i) => {
@@ -38,7 +46,14 @@ const removeTodo = (object, title) => {
   return object;
 };
 
-console.log('Remove -------->', removeTodo(toDo, ' 4'));
+prettyLoger('removeTodo', removeTodo(toDo, ' 4'));
+
+const showTodo = todoArray => {
+  const filteredArray = todoArray.filter(todo => todo.complete === false);
+  return filteredArray;
+};
+
+prettyLoger('showTodo', showTodo(toDo));
 
 // const todoSum = function(arr) {
 //   const allTodo = `You have ${arr.length} item${
