@@ -27,6 +27,17 @@ const findObject = (object, title = '') => {
 
 console.log(findObject(toDo, 'todo'));
 
+const removeTodo = (object, title) => {
+  const index = object.findIndex((item, i) => {
+    console.log(title);
+    return item.title.toLowerCase() === title.toLowerCase();
+  });
+  object.splice(index, 1);
+  return object;
+};
+
+console.log('Remove -------->', removeTodo(toDo, 'todo 3'));
+
 // const todoSum = function(arr) {
 //   const allTodo = `You have ${arr.length} item${
 //     arr.length > 1 ? 's' : ''
