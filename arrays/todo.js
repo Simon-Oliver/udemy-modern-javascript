@@ -25,18 +25,20 @@ const findObject = (object, title = '') => {
   return object[index] ? object[index] : 'Note not found';
 };
 
-console.log(findObject(toDo, 'todo'));
+console.log(findObject(toDo, 'todo 4'));
 
 const removeTodo = (object, title) => {
   const index = object.findIndex((item, i) => {
-    console.log(title);
     return item.title.toLowerCase() === title.toLowerCase();
   });
-  object.splice(index, 1);
+  if (index >= 0) {
+    object.splice(index, 1);
+  }
+
   return object;
 };
 
-console.log('Remove -------->', removeTodo(toDo, 'todo 3'));
+console.log('Remove -------->', removeTodo(toDo, ' 4'));
 
 // const todoSum = function(arr) {
 //   const allTodo = `You have ${arr.length} item${
