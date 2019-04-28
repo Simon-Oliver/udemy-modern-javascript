@@ -1,5 +1,4 @@
 const toDo = [
-  {},
   {
     title: 'Todo 1',
     completed: false
@@ -17,6 +16,16 @@ const toDo = [
     complete: false
   }
 ];
+
+const findObject = (object, title = '') => {
+  const index = object.findIndex((item, i) => {
+    return item.title.toLowerCase() === title.toLowerCase();
+  });
+
+  return object[index] ? object[index] : 'Note not found';
+};
+
+console.log(findObject(toDo, 'todo'));
 
 // const todoSum = function(arr) {
 //   const allTodo = `You have ${arr.length} item${
@@ -38,6 +47,3 @@ const toDo = [
 // toDo.forEach((e, i) => console.log(`${i + 1}. ${e}`));
 
 // todoSum(toDo);
-
-console.log(toDo.indexOf({}));
-const saimon = 123;
