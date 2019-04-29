@@ -1,18 +1,18 @@
 const notes = [
   {
-    title: 'Note One',
+    title: 'A Note One',
     body: 'This is the first note.'
   },
   {
-    title: 'Note Two',
+    title: 'Z Note Two',
     body: 'This is the middle note.'
   },
   {
-    title: 'Second Last Note',
+    title: 'x Second Last Note',
     body: 'this is now Simon. the second last note of the array'
   },
   {
-    title: 'Last Note',
+    title: 'b Last Note',
     body: 'this is now the last note of the array. One'
   }
 ];
@@ -35,5 +35,20 @@ console.log(
   '\n---------------------------------'
 );
 
+const sortNotes = array => {
+  return array.sort((a, b) => {
+    const x = a.title.toLowerCase();
+    const y = b.title.toLowerCase();
+    if (x < y) {
+      return -1;
+    }
+    if (x > y) {
+      return 1;
+    }
+    return 0;
+  });
+};
+sortNotes(notes);
+console.log(notes);
 // console.log(notes.length);
 // console.log(findNote(notes, 'Last Note'));

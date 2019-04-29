@@ -1,21 +1,28 @@
 const toDo = [
   {
-    title: 'Todo 1',
+    title: 'R Todo 1',
     completed: false
   },
   {
-    title: 'Todo 2',
+    title: 'Z Todo 2',
     complete: true
   },
   {
-    title: 'Todo 3',
+    title: 'C Todo 3',
     complete: false
   },
   {
-    title: 'Todo 4',
+    title: 'A Todo 4',
     complete: false
   }
 ];
+
+const sortTodos = array => {
+  return array.sort((a, b) => {
+    return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+  });
+};
+
 const prettyLoger = (title = 'No Title', returnValue) => {
   console.log(
     title,
@@ -24,6 +31,8 @@ const prettyLoger = (title = 'No Title', returnValue) => {
     '\n----------------------------------------------------\n'
   );
 };
+
+prettyLoger('Sort ToDo', sortTodos(toDo));
 
 const findObject = (object, title = '') => {
   const index = object.findIndex((item, i) => {
