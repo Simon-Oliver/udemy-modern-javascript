@@ -19,7 +19,13 @@ const toDo = [
 
 const sortTodos = array => {
   return array.sort((a, b) => {
-    return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+    if (a.complete === false) {
+      return -1;
+    }
+    if (a.complete === true) {
+      return 1;
+    }
+    return 0;
   });
 };
 
