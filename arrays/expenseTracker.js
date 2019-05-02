@@ -12,9 +12,12 @@ const account = {
   },
   getAccountAmount() {
     return this.expenses.reduce((a, b) => a.ammount + b.amount);
+  },
+  getAccountSummary() {
+    return `${this.name} has $${this.getAccountAmount()} in expenses`;
   }
 };
 
 account.addExpense('Food', 59);
 
-console.log(account.getAccountAmount());
+console.log(account.getAccountSummary());
