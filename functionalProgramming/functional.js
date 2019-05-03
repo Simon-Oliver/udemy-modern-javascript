@@ -1,4 +1,4 @@
-function add(a, b) {
+function add(a) {
   return function addingB(b) {
     return a + b;
   };
@@ -7,3 +7,4 @@ function add(a, b) {
 const add10 = add(10);
 
 console.log(add(10)(10));
+console.log(add10(20));

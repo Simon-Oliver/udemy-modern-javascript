@@ -1,23 +1,32 @@
 const account = {
   name: 'Max Muster',
-  expenses: [
-    {
-      description: 'Coffe',
-      ammount: 2
-    }
-  ],
+  expenses: [],
+  income: [],
   addExpense(description, amount) {
     const newExpense = { description, amount };
-    account.expenses.push(newExpense);
+    this.expenses.push(newExpense);
+  },
+  addIncome(description, amount) {
+    const newIncome = { description, amount };
+    this.income.push(newIncome);
   },
   getAccountAmount() {
-    return this.expenses.reduce((a, b) => a.ammount + b.amount);
+    const init = 0;
+    const expenses = this.expenses.reduce((acc, curr) => {
+      return acc + curr.amount;
+    }, init);
+    const income = this.income.reduce((acc, curr) => {
+      return acc + curr.amount;
+    }, init);
+
+    return income - expenses;
   },
   getAccountSummary() {
-    return `${this.name} has $${this.getAccountAmount()} in expenses`;
+    return `${this.name} has $${this.getAccountAmount()} in his account`;
   }
 };
 
+account.addIncome('Salary', 100);
 account.addExpense('Food', 59);
 
 console.log(account.getAccountSummary());
