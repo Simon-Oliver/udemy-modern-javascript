@@ -1,11 +1,16 @@
-const Person = function(firstName, lastName, age) {
+const Person = function(firstName, lastName, age, likes = []) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.age = age;
+  this.likes = likes;
 };
 
 Person.prototype.getBio = function() {
-  return `${this.firstName} is ${this.age}`;
+  let bio = `${this.firstName} is ${this.age}.`;
+  this.likes.forEach(like => {
+    bio += ` ${this.firstName} likes ${like}.`;
+  });
+  return bio;
 };
 
 Person.prototype.setName = function(fullName) {
@@ -14,7 +19,7 @@ Person.prototype.setName = function(fullName) {
   this.lastName = nameArr[1];
 };
 
-const person1 = new Person('Horton', 'test', 68);
+const person1 = new Person('Horton', 'test', 68, ['drawing', 'math']);
 const person2 = new Person('Urs', 'test', 32);
 
 person1.setName('Max Muster');
