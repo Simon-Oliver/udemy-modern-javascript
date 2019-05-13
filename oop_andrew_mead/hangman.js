@@ -8,32 +8,48 @@ const Hangman = function(word, guesses) {
 };
 
 Hangman.prototype.play = function(guessedLetter) {
-  this.letterArray.forEach(letter => {
-    if (letter === guessedLetter) {
-      this.guessedLetters.push(guessedLetter);
-    }
-  });
+  if (this.attempts > this.guesses) {
+    return 'Game Over';
+  }
+
+  if (this.letterArray.includes(guessedLetter)) {
+    this.guessedLetters.push(guessedLetter);
+  } else if (!this.letterArray.includes(guessedLetter)) {
+    this.attempts = this.attempts + 1;
+  }
+
+  return this.displayString().includes('*')
+    ? this.displayString()
+    : `
+------------
+${this.displayString()}
+YOU WIN!!!
+------------
+`;
 };
 
-// Hangman.prototype.play = function(letter) {
-//   let string = '';
+Hangman.prototype.displayString = function() {
+  let string = '';
+  this.letterArray.forEach(letter => {
+    if (this.guessedLetters.includes(letter)) {
+      string += letter;
+    } else if (letter === ' ') {
+      string += ' ';
+    } else if (!this.guessedLetters.includes(letter)) {
+      string += '*';
+    }
+  });
+  return string;
+};
 
-//   this.letterArray.forEach(element => {
-//     if (element === letter) {
-//       this.guessedLetters.push(letter);
-//       string += letter;
-//     } else if (element === ' ') {
-//       string += ' ';
-//     } else {
-//       string += '*';
-//     }
-//   });
-//   return string;
-// };
-
-const game1 = new Hangman('game play', 2);
+const game1 = new Hangman('game', 2);
 const game2 = new Hangman('silly', 3);
 
 console.log(game1.play('m'));
+
+console.log(game1.play('g'));
+console.log(game1.play('a'));
+console.log(game1.play('x'));
+console.log(game1.play('x'));
 console.log(game1.play('e'));
-console.log(game1.guessedLetters);
+console.log(game1);
