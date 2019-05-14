@@ -4,7 +4,7 @@ const Hangman = function(word, guesses) {
 
   this.attempts = 0;
   this.guessedLetters = [];
-  this.letterArray = this.word.split('');
+  this.letterArray = this.word.toLowerCase().split('');
 };
 
 Hangman.prototype.play = function(guessedLetter) {
