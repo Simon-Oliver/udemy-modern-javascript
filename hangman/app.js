@@ -65,6 +65,10 @@ Hangman.prototype.displayString = function() {
 const game1 = new Hangman('game', 4);
 const game2 = new Hangman('silly', 3);
 
+const stringDIV = document.querySelector('.string');
+stringDIV.textContent = game1.displayString();
+
 window.addEventListener('keydown', e => {
   console.log(game1.play(e.key));
+  stringDIV.textContent = game1.displayString();
 });
