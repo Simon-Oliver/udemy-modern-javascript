@@ -5,17 +5,14 @@ const Hangman = function(word, guesses) {
   this.remainingGuesses = guesses;
   this.guessedLetters = [];
   this.letterArray = this.word.toLowerCase().split('');
+  this.isGameOver = false;
 };
 
 Hangman.prototype.play = function(guessedLetter) {
   guessedLetter = guessedLetter.toLowerCase();
   const isUnique = !this.guessedLetters.includes(guessedLetter);
   const isBadGuess = !this.letterArray.includes(guessedLetter);
-  const isGameOver = this.remainingGuesses <= 0;
-
-  if (isGameOver) {
-    return 'GAME OVER!!!';
-  }
+  this.isGameOver = this.remainingGuesses <= 0;
 
   if (isUnique && !isBadGuess) {
     console.log(
@@ -31,21 +28,7 @@ Hangman.prototype.play = function(guessedLetter) {
 
   if (isUnique && isBadGuess) {
     this.remainingGuesses--;
-    console.log(
-      `WRONG!!! ---- You have ${this.remainingGuesses} guess${
-        this.remainingGuesses > 1 ? 'es' : ''
-      } remaining`
-    );
   }
-
-  return this.displayString().includes('*')
-    ? this.displayString()
-    : `
-------------
-${this.displayString()}
-YOU WIN!!!
-------------
-`;
 };
 
 Hangman.prototype.displayString = function() {
@@ -59,7 +42,17 @@ Hangman.prototype.displayString = function() {
       string += '*';
     }
   });
-  return string;
+
+  if (!this.isGameOver) {
+    if (string.includes('*')) {
+      return string;
+    }
+    return `${string}
+    YOU WIN!!!`;
+  }
+  if (this.isGameOver) {
+    return 'GAME OVER!!!';
+  }
 };
 
 const game1 = new Hangman('game', 4);
