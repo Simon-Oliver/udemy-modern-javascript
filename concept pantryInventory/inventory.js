@@ -1,25 +1,29 @@
+const moment = require('moment');
+
 class Item {
   constructor(name, hasExpiryDate, expiryDate) {
     this.name = name;
     this.hasExpiryDate = hasExpiryDate;
     this.expiryDate = expiryDate;
-  }
-
-  isExpired() {
-    if (!this.hasExpiryDate) {
-      return 'This Item has no expiry date';
-    }
+    this.isExpired = moment(this.expiryDate).isBefore();
   }
 }
 
 class FoodItem extends Item {
-  constructor(name, hasExpiryDate, expiryDate, isOpened, useBy) {
+  constructor(
+    name,
+    hasExpiryDate = false,
+    expiryDate = null,
+    isOpened = false,
+    useByAfterOpening = null
+  ) {
     super(name, hasExpiryDate, expiryDate);
     this.isOpened = isOpened;
-    this.useBy = useBy;
+    this.useByAfterOpening = useByAfterOpening;
   }
 }
 
-const beef = new FoodItem('Beef', false, '', true, '1/05/2019');
+const beef = new FoodItem('Beef', true, '2019-04-29', true, '2019-04-29');
 
-console.log(beef.isExpired());
+console.log(beef.isExpired);
+console.log(beef.isOpened);
