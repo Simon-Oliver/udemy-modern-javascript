@@ -63,7 +63,12 @@ class Employee extends Person {
   getBio() {
     return `${this.firstName} is a ${this.position}.`;
   }
+
+  getYearsLeft() {
+    return 65 - this.age;
+  }
 }
 
-const emp1 = new Employee('Max', 'Mustermann', 68, 'Chef', ['Reading', 'Cooking']);
+const emp1 = new Employee('Max', 'Mustermann', 58, 'Chef', ['Reading', 'Cooking']);
 console.log(emp1.getBio());
+console.log(emp1.getYearsLeft());
