@@ -69,6 +69,23 @@ class Employee extends Person {
   }
 }
 
-const emp1 = new Employee('Max', 'Mustermann', 58, 'Chef', ['Reading', 'Cooking']);
-console.log(emp1.getBio());
-console.log(emp1.getYearsLeft());
+class Student extends Person {
+  constructor(firstName, lastName, age, grades = 0, likes = []) {
+    super(firstName, lastName, age, likes);
+    this.grades = grades;
+  }
+
+  updatedGrades(newGrades) {
+    this.grades += newGrades;
+  }
+
+  getBio() {
+    const passing = this.grades > 70;
+
+    return `${this.firstName} is ${passing ? '' : 'not '}passing.`;
+  }
+}
+
+const max = new Student('Max', 'Muster', 17, 20, ['Sketching', 'Cooking']);
+max.updatedGrades(-70);
+console.log(max.getBio());
