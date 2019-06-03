@@ -14,7 +14,7 @@ class Person {
     return bio;
   }
 
-  setName(fullName) {
+  set fullName(fullName) {
     const nameArr = fullName.split(' ');
     this.firstName = nameArr[0];
     this.lastName = nameArr[1];
@@ -47,12 +47,6 @@ console.log(myPerson.getBio());
 
 const person1 = new Person('Horton', 'test', 68, ['drawing', 'math']);
 const person2 = new Person('Urs', 'test', 32);
-
-person1.setName('Max Muster');
-person2.setName('Willy Wonka');
-
-console.log(person1.getBio());
-console.log(person2.getBio());
 
 class Employee extends Person {
   constructor(firstName, lastName, age, position, likes = []) {
@@ -88,4 +82,6 @@ class Student extends Person {
 
 const max = new Student('Max', 'Muster', 17, 20, ['Sketching', 'Cooking']);
 max.updatedGrades(-70);
+console.log(max.getBio());
+max.fullName = `William Turner`;
 console.log(max.getBio());
