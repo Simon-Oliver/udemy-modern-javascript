@@ -7,7 +7,7 @@ class Person {
   }
 
   getBio() {
-    let bio = `${this.firstName} is ${this.age}.`;
+    let bio = `${this.fullName} is ${this.age}.`;
     this.likes.forEach(like => {
       bio += ` ${this.firstName} likes ${like}.`;
     });
@@ -18,6 +18,10 @@ class Person {
     const nameArr = fullName.split(' ');
     this.firstName = nameArr[0];
     this.lastName = nameArr[1];
+  }
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
   }
 }
 
@@ -76,7 +80,7 @@ class Student extends Person {
   getBio() {
     const passing = this.grades > 70;
 
-    return `${this.firstName} is ${passing ? '' : 'not '}passing.`;
+    return `${this.fullName} is ${passing ? '' : 'not '}passing.`;
   }
 }
 
@@ -85,3 +89,4 @@ max.updatedGrades(-70);
 console.log(max.getBio());
 max.fullName = `William Turner`;
 console.log(max.getBio());
+console.log(max);
