@@ -17,7 +17,11 @@ window.addEventListener('keydown', e => {
 
 const request = new XMLHttpRequest();
 
-request.addEventListener('readystatechange', e => console.log(e));
+request.addEventListener('readystatechange', e => {
+  if (e.target.readyState === 4) {
+    console.log(JSON.parse(e.target.response).puzzle);
+  }
+});
 
 request.open('GET', 'https://puzzle.mead.io/puzzle');
 request.send();
