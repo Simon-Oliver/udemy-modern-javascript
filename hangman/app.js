@@ -18,10 +18,12 @@ window.addEventListener('keydown', e => {
 const request = new XMLHttpRequest();
 
 request.addEventListener('readystatechange', e => {
-  if (e.target.readyState === 4) {
+  if (e.target.readyState === 4 && e.target.status === 200) {
     console.log(JSON.parse(e.target.response).puzzle);
+  } else if (e.target.readyState === 4) {
+    console.log(e.target.response);
   }
 });
 
-request.open('GET', 'https://puzzle.mead.io/puzzle');
+request.open('GET', 'https://puzzle.mead.io/puzzle?wordCountt=3');
 request.send();
