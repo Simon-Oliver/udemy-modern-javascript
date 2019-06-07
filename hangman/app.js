@@ -13,8 +13,12 @@ window.addEventListener('keydown', e => {
   guessesDIV.textContent = game1.remainingGuesses;
 });
 
-getPuzzle(word => {
-  console.log(word);
+getPuzzle((error, word) => {
+  if (error) {
+    console.log(`Error: ${error}`);
+  } else {
+    console.log(word);
+  }
 });
 
 // HTTP request
