@@ -13,7 +13,7 @@ class Hangman {
     guessedLetter = guessedLetter.toLowerCase();
     const isUnique = !this.guessedLetters.includes(guessedLetter);
     const isBadGuess = !this.letterArray.includes(guessedLetter);
-    this.isGameOver = this.remainingGuesses === 1;
+    this.isGameOver = this.remainingGuesses === 0;
 
     if (isUnique && !isBadGuess) {
       console.log(
