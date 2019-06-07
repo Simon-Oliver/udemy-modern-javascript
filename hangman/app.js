@@ -13,33 +13,36 @@ window.addEventListener('keydown', e => {
   guessesDIV.textContent = game1.remainingGuesses;
 });
 
+getPuzzle(word => {
+  console.log(word);
+});
+
 // HTTP request
 
-const request = new XMLHttpRequest();
+// const request = new XMLHttpRequest();
 
-request.addEventListener('readystatechange', e => {
-  if (e.target.readyState === 4 && e.target.status === 200) {
-    console.log(JSON.parse(e.target.response).puzzle);
-  } else if (e.target.readyState === 4) {
-    console.log(e.target.response);
-  }
-});
+// request.addEventListener('readystatechange', e => {
+//   if (e.target.readyState === 4 && e.target.status === 200) {
+//     console.log(JSON.parse(e.target.response).puzzle);
+//   } else if (e.target.readyState === 4) {
+//     console.log(e.target.response);
+//   }
+// });
 
-request.open('GET', 'https://puzzle.mead.io/puzzle?wordCount=3');
-request.send();
+// request.open('GET', 'https://puzzle.mead.io/puzzle?wordCount=3');
+// request.send();
 
-const countries = new XMLHttpRequest();
+// const countries = new XMLHttpRequest();
+// const countryCode = 'CH';
 
-const countryCode = 'CH';
+// countries.addEventListener('readystatechange', e => {
+//   if (e.target.readyState === 4 && e.target.status === 200) {
+//     const data = JSON.parse(e.target.response).filter(item => item.alpha2Code === countryCode);
+//     console.log(data[0]);
+//   } else if (e.target.readyState === 4) {
+//     console.log(e.target.response);
+//   }
+// });
 
-countries.addEventListener('readystatechange', e => {
-  if (e.target.readyState === 4 && e.target.status === 200) {
-    const data = JSON.parse(e.target.response).filter(item => item.alpha2Code === countryCode);
-    console.log(data[0]);
-  } else if (e.target.readyState === 4) {
-    console.log(e.target.response);
-  }
-});
-
-countries.open('GET', 'https://restcountries.eu/rest/v2/all');
-countries.send();
+// countries.open('GET', 'https://restcountries.eu/rest/v2/all');
+// countries.send();
