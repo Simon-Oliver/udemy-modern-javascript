@@ -3,6 +3,11 @@
 html {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+    font-size: 62.5%;
+}
+
+p {
+    font-size: 1.6rem
 }
 
 *,
@@ -17,7 +22,7 @@ h1 {
 
 header {
     height: 10vh;
-
+    font-size: 1.2rem;
 }
 
 .logo {
@@ -30,9 +35,6 @@ header {
 }
 
 .logoShadow {
-    position: absolute;
-    height: 15vh;
-    width: 15vh;
     box-shadow: 0px 0px 10px 10px rgba(122, 122, 122, 0.582);
     z-index: -100;
 }
@@ -67,21 +69,66 @@ nav ol li a {
 }
 
 
+/* First Page */
+
 .firstPage {
     height: 90vh;
     padding: 0 10vh;
 }
 
 .heroContainer {
-    padding: 5rem;
+    display: flex;
+    padding: 15vh;
     color: #a1a1a1;
     background: #1f1f1f;
+    height: 80vh;
 }
 
-.heroContainer h1 {
+.paraContainer {
+    margin-left: auto;
+}
+
+.heroContainer p {
+    margin: 0;
+}
+
+.heroBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 15vh;
+    margin-left: auto;
+    left: 10vh;
+    top: -10vh;
+    background: #f93a55;
+    width: 40vw;
+    color: white;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 3px 5px 10px 0px rgba(122, 122, 122, 0.582);
+}
+
+
+.heroBtn .btnTxt {
+    position: relative;
+    text-align: center;
+    width: auto;
+    font-size: 1.6rem;
+}
+
+.heroBtn .btnTxt:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background: #ffffff;
+    width: 100%;
+}
+
+.paraHighlited {
     color: white;
 }
-
 
 main {
     flex: 1
