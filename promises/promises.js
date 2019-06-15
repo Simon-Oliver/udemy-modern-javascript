@@ -18,10 +18,15 @@ getDataCallBack((err, data) => {
 
 const myPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve('This is the promise data');
+    // resolve('This is the promise data');
+    reject('This a promise error');
   }, 3000);
 });
 
-myPromise.then(res => {
-  console.log(res);
-});
+myPromise
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  });
