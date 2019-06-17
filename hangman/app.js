@@ -8,7 +8,6 @@ guessesDIV.textContent = game1.remainingGuesses;
 
 window.addEventListener('keydown', e => {
   game1.play(e.key);
-  console.log(game1);
   stringDIV.textContent = game1.displayString();
   guessesDIV.textContent = game1.remainingGuesses;
 });

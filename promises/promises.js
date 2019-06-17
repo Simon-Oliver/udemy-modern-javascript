@@ -1,12 +1,16 @@
 // Callback
 
-const getDataCallBack = callaback => {
+const getDataCallBack = (num, callback) => {
   setTimeout(() => {
-    callaback(undefined, 'This is the data');
+    if (typeof num === 'number') {
+      callback(undefined, num * 2);
+    } else {
+      callback('Number must be provided');
+    }
   }, 3000);
 };
 
-getDataCallBack((err, data) => {
+getDataCallBack(2, (err, data) => {
   if (err) {
     console.log(err);
   } else {
