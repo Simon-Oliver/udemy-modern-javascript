@@ -14,26 +14,29 @@ getDataCallBack(2, (err, data) => {
   if (err) {
     console.log(err);
   } else {
-    console.log(data);
+    getDataCallBack(data, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(`Callback ------>`, data);
+      }
+    });
   }
 });
 
 // Promise
 
-const getDataPromise = data => {
+const getDataPromise = num => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(`Success Data:${data}`);
-      // reject('This a promise error');
-    }, 3000);
+      typeof num === 'number' ? resolve(num * 2) : reject('Number must be provided');
+    }, 2000);
   });
 };
 
-const myPromise = getDataPromise('Test123');
-myPromise
+getDataPromise(3)
   .then(res => {
-    console.log(res);
+    return getDataPromise(res);
   })
-  .catch(err => {
-    console.log(err);
-  });
+  .then(data => console.log('Promise data ----->', data))
+  .catch(err => console.log(err));
