@@ -15,3 +15,13 @@ window.addEventListener('keydown', e => {
 getPuzzle('1');
 
 getCountry('CH').then(data => console.log(data.name));
+
+fetch('http://puzzle.mead.io/puzzle')
+  .then(response => {
+    if (response.status === 200) {
+      console.log(response.status);
+    } else {
+      throw new Error('Unable to fetch the puzzle');
+    }
+  })
+  .catch(err => console.log(err));

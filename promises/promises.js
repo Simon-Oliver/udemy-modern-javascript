@@ -34,9 +34,9 @@ const getDataPromise = num => {
   });
 };
 
-getDataPromise(3)
+getDataPromise('2')
   .then(res => {
     return getDataPromise(res);
   })
   .then(data => console.log('Promise data ----->', data))
-  .catch(err => console.log(err));
+  .catch(err => console.log('Whooops ---------->', err));
