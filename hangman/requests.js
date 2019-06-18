@@ -1,16 +1,27 @@
-const getPuzzle = wordCount =>
-  new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
-    request.addEventListener('readystatechange', e => {
-      if (e.target.readyState === 4 && e.target.status === 200) {
-        resolve(JSON.parse(e.target.response).puzzle);
-      } else if (e.target.readyState === 4) {
-        reject(JSON.parse(e.target.response).error);
+const getPuzzle = wordCount => {
+  return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
       }
-    });
-    request.open('GET', `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
-    request.send();
-  });
+      throw new Error('Could not get puzzle');
+    })
+    .catch(err => console.log(err));
+};
+
+// const getPuzzle = wordCount =>
+//   new Promise((resolve, reject) => {
+//     const request = new XMLHttpRequest();
+//     request.addEventListener('readystatechange', e => {
+//       if (e.target.readyState === 4 && e.target.status === 200) {
+//         resolve(JSON.parse(e.target.response).puzzle);
+//       } else if (e.target.readyState === 4) {
+//         reject(JSON.parse(e.target.response).error);
+//       }
+//     });
+//     request.open('GET', `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
+//     request.send();
+//   });
 
 // Callback example
 

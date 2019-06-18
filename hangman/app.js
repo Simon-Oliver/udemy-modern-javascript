@@ -1,27 +1,29 @@
-const game1 = new Hangman('Hello Chicka', 4);
+getPuzzle('1')
+  .then(data => {
+    const game1 = new Hangman(data.puzzle, 4);
 
-const stringDIV = document.querySelector('.string');
-stringDIV.textContent = game1.displayString();
+    const stringDIV = document.querySelector('.string');
+    stringDIV.textContent = game1.displayString();
 
-const guessesDIV = document.querySelector('.guesses');
-guessesDIV.textContent = game1.remainingGuesses;
+    const guessesDIV = document.querySelector('.guesses');
+    guessesDIV.textContent = game1.remainingGuesses;
 
-window.addEventListener('keydown', e => {
-  game1.play(e.key);
-  stringDIV.textContent = game1.displayString();
-  guessesDIV.textContent = game1.remainingGuesses;
-});
-
-getPuzzle('1');
+    window.addEventListener('keydown', e => {
+      game1.play(e.key);
+      stringDIV.textContent = game1.displayString();
+      guessesDIV.textContent = game1.remainingGuesses;
+    });
+  })
+  .catch(err => console.log(err));
 
 getCountry('CH').then(data => console.log(data.name));
 
-fetch('http://puzzle.mead.io/puzzle')
-  .then(response => {
-    if (response.status === 200) {
-      console.log(response.status);
-    } else {
-      throw new Error('Unable to fetch the puzzle');
-    }
-  })
-  .catch(err => console.log(err));
+// fetch('http://puzzle.mead.io/puzzle')
+//   .then(response => {
+//     if (response.status === 200) {
+//       return response.json();
+//     }
+//     throw new Error('Unable to fetch the puzzle');
+//   })
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
