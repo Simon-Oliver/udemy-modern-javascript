@@ -38,20 +38,17 @@ const getPuzzle = wordCount => {
 //   request.send();
 // };
 
-const getCountry = country =>
-  new Promise((resolve, reject) => {
-    const countries = new XMLHttpRequest();
-    const countryCode = country;
-
-    countries.addEventListener('readystatechange', e => {
-      if (e.target.readyState === 4 && e.target.status === 200) {
-        const data = JSON.parse(e.target.response).find(item => item.alpha2Code === countryCode);
-        resolve(data);
-      } else if (e.target.readyState === 4) {
-        reject(e.target.response);
+const getCountry = country => {
+  const countryCode = country;
+  return fetch('https://restcountries.eu/rest/v2/all')
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
       }
-    });
-
-    countries.open('GET', 'https://restcountries.eu/rest/v2/all');
-    countries.send();
-  });
+      throw new Error('Could not get country');
+    })
+    .then(data => {
+      return data.find(item => item.alpha2Code === countryCode);
+    })
+    .catch(err => console.log(err));
+};
