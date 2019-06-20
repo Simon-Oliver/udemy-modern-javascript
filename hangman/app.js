@@ -16,7 +16,9 @@ getPuzzle('1')
   })
   .catch(err => console.log(err));
 
-getCountry('CH').then(data => console.log(data.name));
+getCountry('CH')
+  .then(data => console.log(data.name))
+  .catch(err => console.log(err));
 
 // fetch('http://puzzle.mead.io/puzzle')
 //   .then(response => {

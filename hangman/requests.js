@@ -38,8 +38,7 @@ const getPuzzle = wordCount => {
 //   request.send();
 // };
 
-const getCountry = country => {
-  const countryCode = country;
+const getCountry = countryCode => {
   return fetch('https://restcountries.eu/rest/v2/all')
     .then(response => {
       if (response.status === 200) {
@@ -49,6 +48,5 @@ const getCountry = country => {
     })
     .then(data => {
       return data.find(item => item.alpha2Code === countryCode);
-    })
-    .catch(err => console.log(err));
+    });
 };
