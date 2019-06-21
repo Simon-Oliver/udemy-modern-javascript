@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 getPuzzle('1')
   .then(data => {
     const game1 = new Hangman(data.puzzle, 4);
@@ -29,3 +31,9 @@ getCountry('CH')
 //   })
 //   .then(data => console.log(data))
 //   .catch(err => console.log(err));
+
+const getLocation = () => {
+  return fetch(`https://ipinfo.io/json?=token=${process.env.MY_API_KEY}`).then(res => res.json());
+};
+
+getLocation().then(data => console.log(data));
