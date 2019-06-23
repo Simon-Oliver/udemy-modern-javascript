@@ -1,4 +1,13 @@
-const getPuzzle = wordCount => {
+const getPuzzle = async wordCount => {
+  const response = await fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
+  if (response.status === 200) {
+    const data = await response.json();
+    return data;
+  }
+  throw new Error('Unable to get Puzzle');
+};
+
+const getPuzzleOld = wordCount => {
   return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
     .then(response => {
       if (response.status === 200) {
@@ -38,15 +47,26 @@ const getPuzzle = wordCount => {
 //   request.send();
 // };
 
-const getCountry = countryCode => {
-  return fetch('https://restcountries.eu/rest/v2/all')
-    .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      throw new Error('Could not get country');
-    })
-    .then(data => {
-      return data.find(item => item.alpha2Code === countryCode);
-    });
+const getCountry = async countryCode => {
+  const response = await fetch('https://restcountries.eu/rest/v2/all');
+
+  if (response.status === 200) {
+    const data = await response.json();
+    return data.find(item => item.alpha2Code === countryCode);
+  }
+  throw new Error('Could not get country');
 };
+
+// const getCountry = countryCode => {
+
+//   return fetch('https://restcountries.eu/rest/v2/all')
+//     .then(response => {
+//       if (response.status === 200) {
+//         return response.json();
+//       }
+//       throw new Error('Could not get country');
+//     })
+//     .then(data => {
+//       return data.find(item => item.alpha2Code === countryCode);
+//     });
+// };
