@@ -39,7 +39,7 @@ class Hangman {
         string += letter;
       } else if (letter === ' ') {
         string += ' ';
-      } else if (!this.guessedLetters.includes(letter)) {
+      } else {
         string += '*';
       }
     });
@@ -53,7 +53,8 @@ class Hangman {
     }
     if (this.isGameOver) {
       this.remainingGuesses = 0;
-      return 'GAME OVER!!!';
+      return `Game Over!!! The word was '${this.word}'`;
     }
+    return string;
   }
 }

@@ -1,20 +1,28 @@
-getPuzzle('6')
-  .then(data => {
-    const game1 = new Hangman(data.puzzle, 4);
+const stringDIV = document.querySelector('.string');
+const guessesDIV = document.querySelector('.guesses');
 
-    const stringDIV = document.querySelector('.string');
-    stringDIV.textContent = game1.displayString();
+let game1;
 
-    const guessesDIV = document.querySelector('.guesses');
-    guessesDIV.textContent = game1.remainingGuesses;
+const render = () => {
+  stringDIV.textContent = game1.displayString();
+  guessesDIV.textContent = game1.remainingGuesses;
+};
 
-    window.addEventListener('keydown', e => {
-      game1.play(e.key);
-      stringDIV.textContent = game1.displayString();
-      guessesDIV.textContent = game1.remainingGuesses;
-    });
-  })
-  .catch(err => console.log(err));
+const startGame = async () => {
+  const data = await getPuzzle('2');
+  game1 = new Hangman(data.puzzle, 4);
+  render();
+};
+
+startGame();
+
+window.addEventListener('keydown', e => {
+  game1.play(e.key);
+  render();
+});
+
+const resetBtn = document.querySelector('#reset');
+resetBtn.addEventListener('click', startGame);
 
 getCountry('CH')
   .then(data => console.log(data.name))
