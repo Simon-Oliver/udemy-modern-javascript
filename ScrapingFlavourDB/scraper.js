@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const filePath = path.resolve((__dirname, '../falvourData.js'));
+const filePath = path.resolve((__dirname, './flavourData.js'));
 
 const urlIngredient = 'https://cosylab.iiitd.edu.in/flavordb/entity_details?id=978';
 const urlPairing = 'https://cosylab.iiitd.edu.in/flavordb/food_pairing_analysis?id=978';
@@ -60,13 +60,44 @@ const combine = async id => {
 
   const ingredient = await getIngredient(id);
   const pairing = await getPairing(id);
+  const topValues = pairing.sort((a, b) => b.common_molecules - a.common_molecules).slice(0, 100);
+  flavourPairing = { ...ingredient, pairing: topValues };
 
-  flavourPairing = { ...ingredient, pairing };
-  console.log(flavourPairing);
   return flavourPairing;
 };
 
-combine(800).catch(err => console.log('Whooops', err));
+// combine(78).catch(err => console.log('Whooops', err));
+
+const scrapeFlavourDB = async num => {
+  const dataArr = [];
+  for (let index = 0; index < num; index++) {
+    const item = await combine(index);
+    dataArr.push(item);
+  }
+
+  // console.log(dataArr);
+  writeFile(dataArr);
+};
+
+const writeFile = data => {
+  const json = JSON.stringify(data);
+
+  fs.writeFile(filePath, json, 'utf8', (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+};
+
+const read = callback => {
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    callback(JSON.parse(data));
+  });
+};
+
+scrapeFlavourDB(2)
+  .then(() => read(data => console.log(data)))
+  .catch(err => console.log(err));
 
 // JSON.parse(validJson)
 
