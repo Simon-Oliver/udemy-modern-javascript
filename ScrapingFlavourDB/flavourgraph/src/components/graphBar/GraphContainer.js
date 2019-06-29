@@ -7,22 +7,23 @@ import './GraphContainer.css';
 
 class GraphContainer extends Component {
   state = {
-    height: '50px',
-    width: '0px'
+    barStyle: {
+      height: '50px',
+      width: '0px'
+    }
   };
 
   componentDidMount() {
     console.log(flavourData[0].pairing[0].common_molecules);
     this.setState(prevState => ({
-      ...prevState,
-      width: `${flavourData[0].pairing[0].common_molecules}px`
+      barStyle: { ...prevState.barStyle, width: `${flavourData[0].pairing[0].common_molecules}px` }
     }));
   }
 
   render() {
     return (
       <div className="graphcontainer">
-        <Bar barStyle={this.state} />
+        <Bar barStyle={this.state.barStyle} />
       </div>
     );
   }
