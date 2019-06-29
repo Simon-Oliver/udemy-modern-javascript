@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Graph from './Graph';
+import GraphContainer from './components/graphBar/GraphContainer';
 
 function App() {
   return (
     <div className="App">
-      <Graph />
+      <GraphContainer />
     </div>
   );
 }

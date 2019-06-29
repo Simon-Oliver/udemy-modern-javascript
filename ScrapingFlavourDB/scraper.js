@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const filePath = path.resolve((__dirname, './flavourData.js'));
+const filePath = path.resolve((__dirname, './flavourData.json'));
 
 const urlIngredient = 'https://cosylab.iiitd.edu.in/flavordb/entity_details?id=978';
 const urlPairing = 'https://cosylab.iiitd.edu.in/flavordb/food_pairing_analysis?id=978';
@@ -95,7 +95,7 @@ const read = callback => {
   });
 };
 
-scrapeFlavourDB(2)
+scrapeFlavourDB(1)
   .then(() => read(data => console.log(data)))
   .catch(err => console.log(err));
 
