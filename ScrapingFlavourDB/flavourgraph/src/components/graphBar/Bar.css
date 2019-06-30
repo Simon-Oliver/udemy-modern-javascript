@@ -1,3 +1,13 @@
 .bar {
     background-color: red;
 }
+
+.barContainer {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.label {
+    width: 20vw;
+}

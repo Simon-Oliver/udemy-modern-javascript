@@ -13,19 +13,23 @@ class GraphContainer extends Component {
     }
   };
 
+  renderList() {
+    const data = flavourData[0].pairing.map((e, i) => (
+      <Bar data={e.common_molecules} name={e.name} key={i} index={i} />
+    ));
+
+    return data;
+  }
+
   componentDidMount() {
-    console.log(flavourData[0].pairing[0].common_molecules);
+    this.renderList();
     this.setState(prevState => ({
       barStyle: { ...prevState.barStyle, width: `${flavourData[0].pairing[0].common_molecules}px` }
     }));
   }
 
   render() {
-    return (
-      <div className="graphcontainer">
-        <Bar barStyle={this.state.barStyle} />
-      </div>
-    );
+    return <div className="graphcontainer">{this.renderList()}</div>;
   }
 }
 
