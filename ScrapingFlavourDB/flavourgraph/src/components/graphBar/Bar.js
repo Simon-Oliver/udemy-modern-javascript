@@ -9,6 +9,7 @@ function Bar(props) {
         className={`bar${props.index} bar`}
         style={{ height: '50px', width: `${props.data}px` }}
       />
+      <div>{props.data}</div>
     </div>
   );
 }
