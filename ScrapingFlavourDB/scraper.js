@@ -95,8 +95,8 @@ const read = callback => {
   });
 };
 
-scrapeFlavourDB(1)
-  .then(() => read(data => console.log(data)))
+scrapeFlavourDB(10)
+  .then(() => read(data => console.log(data.name)))
   .catch(err => console.log(err));
 
 // JSON.parse(validJson)
